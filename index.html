@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="dashboard">
+        <div class="bar-info"></div>
+        <div class="beer-info"></div>
+        <div class="beer-level">
+            <h1>BEER LEVELS</h1>
+        </div>
+        <div class="bartender-info"></div>
+        <div class="queue-info"></div>
+        <div class="serving-info"></div>
+    </div>
+
+    <template id="barInfoTemplate">
+    <!-- Status if the bar is open -->
+        <div class="status-board">Is the bar open</div>
+
+    <!-- How many more hours will the bar will be open -->
+        <div class="hours-left">How many hours will the bar be open</div>
+    </template>
+
+    <template id="beerInfoTemplate">
+    <!-- Beer catalogue -->
+        <article class="beer-description">
+            <!-- Picture -->
+            <img src="">
+            <!-- Name -->
+            <h2>Name of the beer</h2>
+            <!-- Description -->
+            <div class="beer-description">
+                <!-- Aroma -->
+                <div class="aroma">Aroma of the beer</div>
+                <!-- Appearance -->
+                <div class="appearance">Appearance of the beer</div>
+                <!-- Flavor -->
+                <div class="flavor">Flavor of the beer</div>
+                <!-- Mouth feel -->
+                <div class="mouthfeel">Mouth feel of the beer</div>
+                <!-- Overall impression -->
+                <div class="overall-impression">Overall impression</div>
+            </div>
+        </article>
+    </template>
+
+    <template id="beerLevelTemplate">
+    <!-- Capacity bars for beer -->
+        <div class="beer-left">
+            <h2>Name of the beer</h2>
+            <div class="beer-level"></div>
+        </div>
+    </template>
+
+    <template id="bartenderInfoTemplate">
+    <!-- Bartender status -->
+        <div class="bartender">
+            <h2>Bartender name</h2>
+            <div class="bartender-status">Bartender status</div>
+            <img src="" alt="" class="bartender-image">
+        </div>
+    </template>
+    
+    <template id="queueInfoTemplate">
+    <!-- Displaying the queue -->
+        <div class="people-in-queue">People in queue</div>
+    </template>
+
+    <template id="servingInfoTemplate">
+    <!-- Displaying serving order or queue -->
+        <div class="beers-served">Amount of beers served</div>
+    </template>
+
+    <!-- Most popular beer -->
+        <div class="most-popular">Most popular beer</div>
+    
+    
+
+
+    
+    
+    <script src="http://petlatkea.dk/2018/front/foobar.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
