@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow:400,700");
 body {
-  font-family: 'Barlow', sans-serif; }
+  font-family: 'Barlow', sans-serif;
+  background-color: #f4f4f4;
+  padding: 30px; }
 
 #dashboard {
   display: flex;
   flex-direction: column; }
 
-.cards, .bartender-info, .beer-level, .queue, .storage-info {
+.cards, .bartender-info, .beer-levels, .queue, .storage-info {
   display: flex; }
 
 .cards {
@@ -16,17 +18,194 @@ body {
 h2 {
   font-size: 15px; }
 
-.card {
-  border: 1px solid black; }
+.beer-left h2 {
+  text-align: center;
+  font-weight: 200;
+  text-transform: uppercase; }
 
 .one-status {
-  flex-direction: column; }
+  flex-direction: column;
+  margin-right: 30px; }
 
 .storage-info {
   flex-wrap: wrap;
-  flex: 1; }
+  width: 790px; }
 
 .bar-name {
   font-weight: 700;
   font-size: 23px;
   text-transform: uppercase; }
+
+.time-info {
+  display: flex;
+  margin-top: 5px; }
+
+.vert-line {
+  margin: 0 5px; }
+
+.card {
+  background-color: white;
+  padding: 15px;
+  margin: 20px 0;
+  box-shadow: 0px 0px 40px #bbb9b9; }
+
+.bartender {
+  margin: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px; }
+
+.bartender-image {
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  margin: 0 0 15px 0; }
+
+.all-bartenders {
+  background-color: #00e276;
+  color: white;
+  min-width: 490px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.card-name {
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0 0 20px 10px; }
+
+.bartender-name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 7px; }
+
+.bartender-status {
+  font-size: 14px;
+  text-transform: uppercase; }
+
+.people-served {
+  font-size: 14px; }
+
+.bartender-info {
+  display: flex;
+  justify-content: center; }
+
+.bar-open {
+  color: #00e276;
+  text-transform: uppercase; }
+
+.bar-closed {
+  color: #ff4c2e;
+  text-transform: uppercase; }
+
+.time-info {
+  color: gray; }
+
+.beer-level {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white; }
+
+.beer-level-outline {
+  height: 166.66px;
+  border: 1px solid black;
+  position: relative;
+  width: 100%; }
+
+.beer-left {
+  width: 70px;
+  margin: 0 15px; }
+
+.bar-info {
+  margin-bottom: 10px; }
+
+.beers-served {
+  font-size: 120px;
+  color: #00e276;
+  line-height: 1.1em; }
+
+.serving-info h2 {
+  margin: 0;
+  color: #00e276; }
+
+.serving-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 220px; }
+
+.queue div {
+  background-image: url("images/person.svg"); }
+
+.people-in-queue {
+  background-color: #00e276;
+  padding: 10px;
+  margin-bottom: 15px;
+  color: white; }
+
+progress {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative; }
+
+.low-storage progress::-webkit-progress-bar {
+  background-color: white;
+  border-radius: 50px;
+  border: 2px solid #ff4c2e;
+  height: 35px; }
+
+.low-storage progress::-webkit-progress-value {
+  border-radius: 50px;
+  background-color: #ff4c2e; }
+
+.medium-storage progress::-webkit-progress-bar {
+  background-color: white;
+  border-radius: 50px;
+  border: 2px solid #ffb32c;
+  height: 35px; }
+
+.medium-storage progress::-webkit-progress-value {
+  border-radius: 50px;
+  background-color: #ffb32c; }
+
+.high-storage progress::-webkit-progress-bar {
+  background-color: white;
+  border-radius: 50px;
+  border: 2px solid #00e276;
+  height: 35px; }
+
+.high-storage progress::-webkit-progress-value {
+  border-radius: 50px;
+  background-color: #00e276; }
+
+.storage-warning {
+  margin: 5px 0 20px 0;
+  width: 150px; }
+
+.storage-name {
+  margin-top: 25px;
+  font-size: 15px;
+  text-transform: uppercase; }
+
+progress:before {
+  content: attr(data-label);
+  font-size: 1.2em;
+  position: absolute;
+  text-align: left;
+  top: 5px;
+  left: 10px;
+  right: 0;
+  color: white; }
+
+.storage-warning {
+  text-transform: uppercase;
+  color: #ff4c2e;
+  font-size: 14px;
+  font-weight: 700; }

@@ -2,7 +2,7 @@
 window.addEventListener("load", gettingData);
 let data;
 //Getting data every 10 seconds
-setInterval(gettingData, 10000000);
+setInterval(gettingData, 100000000);
 
 let allOrders = 0; 
 let b1Customers = [], b2Customers = [], b3Customers = [], i;
@@ -12,7 +12,7 @@ function gettingData(){
     
     let dashboardBarInfo = document.querySelector(".bar-info");
     let dashboardBartenderInfo = document.querySelector(".bartender-info");
-    let dashboardBeerLevel = document.querySelector(".beer-level");
+    let dashboardBeerLevel = document.querySelector(".beer-levels");
     let dashboardQueueInfo = document.querySelector(".queue-info");
     let dashboardServingInfo = document.querySelector(".serving-info");
     let dashboardStorageInfo = document.querySelector(".storage-info");
@@ -62,6 +62,7 @@ function gettingData(){
     let hoursInMinutes = hour*60;
 
     let currentTimeInMinutes = hoursInMinutes+minute;
+    //let currentTimeInMinutes = 510;
 
     //console.log(hoursInMinutes);
     //console.log(currentTimeInMinutes);
@@ -79,20 +80,56 @@ function gettingData(){
     //08:00 = 480
     //09:00 = 540
 
+    let opensIn;
+
     if((currentTimeInMinutes>=1320 && currentTimeInMinutes<=1380)||(currentTimeInMinutes>=0 && currentTimeInMinutes<=540)){
         statusBoard.innerHTML = "Bar is <span class='bar-closed'>closed</span>";
+
+        if(currentTimeInMinutes>=1320 && currentTimeInMinutes<1380){
+            let newCurrentTimeInMinutes=currentTimeInMinutes-1380;
+            opensIn = Math.round((540 - newCurrentTimeInMinutes)/60);
+            console.log('First IF');
+        }
+        if(currentTimeInMinutes>=1380 && currentTimeInMinutes<1440){
+            let newCurrentTimeInMinutesTwo=currentTimeInMinutes-1500;
+            console.log('Else IF'+newCurrentTimeInMinutesTwo);
+            opensIn = Math.round((540 - newCurrentTimeInMinutesTwo)/60);
+            //PROBLEM HERE
+        }
+        if(currentTimeInMinutes>=0 && currentTimeInMinutes<=540){
+            opensIn = Math.round((540 - currentTimeInMinutes)/60);
+            console.log('Else');
+        }
+        if(opensIn==0){
+            let opensInMinutesLeft=(540 - currentTimeInMinutes)%60;
+            closesInDiv.textContent = "Opens in "+opensInMinutesLeft+" minutes";
+        }else{
+            closesInDiv.textContent = "Opens in "+opensIn+" hours";
+        }
+        
+        
+        console.log(opensIn);
+        //540 - (-60) 
+        //if 1380, then 1380-1500 
+        //if 1320, then 1320-1380
     }else{
         statusBoard.innerHTML = "Bar is <span class='bar-open'>open</span>";
         //console.log("Minutes until closing time: "+(1320-currentTimeInMinutes));
         let closesIn = Math.round((1320-currentTimeInMinutes)/60);
-        closesInDiv.textContent = "Closes in "+closesIn+" hours";
+        if(closesIn==0){
+            let minutesLeft=(1320-currentTimeInMinutes)%60;
+            closesInDiv.textContent = "Closes in "+minutesLeft+" minutes";
+        }else{
+            closesInDiv.textContent = "Closes in "+closesIn+" hours";
+        }
+        
     }
 
-    console.log("Opens in ");
 
-    //540 - (-60) 
-    //if 1380, then 1380-1500 
-    //if 1320, then 1320-1380
+
+    
+
+    
 
 
 
@@ -105,12 +142,21 @@ function gettingData(){
     bartenderData.forEach(function(bartender){
         let bartenderInfoTemplate = document.querySelector("#bartenderInfoTemplate").content;
         let bartenderClone = bartenderInfoTemplate.cloneNode(true);
-        let bartenderName = bartenderClone.querySelector(".bartender h2");
+        let bartenderName = bartenderClone.querySelector(".bartender-name");
         let bartenderStatus = bartenderClone.querySelector(".bartender-status");
         let bartenderPeopleServed = bartenderClone.querySelector(".bartender .people-served");
+        let bartenderImg = bartenderClone.querySelector(".bartender-image");
 
-        bartenderName.textContent = "Bartender: "+bartender.name;
-        bartenderStatus.textContent = "Status: "+bartender.status;
+        bartenderName.textContent = bartender.name;
+
+        if(bartender.status=='WORKING'){
+            bartenderStatus.textContent = "Pouring beer";
+        }
+        if(bartender.status=='READY'){
+            bartenderStatus.textContent = "Chilling";
+        }
+
+        
         
         
         //console.log("Serving customer: "+bartender.servingCustomer);
@@ -124,7 +170,8 @@ function gettingData(){
                 console.log("Current customer for Jonas: "+bartender.servingCustomer);
                 console.log("Array of served customers for Jonas: "+b1Customers);
             }
-            bartenderPeopleServed.textContent = "People served: "+b1Customers.length;
+            bartenderPeopleServed.textContent = b1Customers.length+" customers served";
+            bartenderImg.setAttribute("src", "images/1.jpg");
         }
         if(bartender.name=="Peter"){
             if(bartender.servingCustomer==null){
@@ -135,7 +182,8 @@ function gettingData(){
                 console.log("Current customer for Peter: "+bartender.servingCustomer);
                 console.log("Array of served customers for Peter: "+b2Customers);
             }
-            bartenderPeopleServed.textContent = "People served: "+b2Customers.length;
+            bartenderPeopleServed.textContent = b2Customers.length+" customers served";
+            bartenderImg.setAttribute("src", "images/2.jpg");
         }
         if(bartender.name=="Martin"){
             if(bartender.servingCustomer==null){
@@ -146,7 +194,8 @@ function gettingData(){
                 console.log("Current customer for Martin: "+bartender.servingCustomer);
                 console.log("Array of served customers for Martin: "+b3Customers);
             }
-            bartenderPeopleServed.textContent = "People served: "+b3Customers.length;
+            bartenderPeopleServed.textContent = b3Customers.length+" customers served";
+            bartenderImg.setAttribute("src", "images/3.jpg");
         }
 
         dashboardBartenderInfo.appendChild(bartenderClone);
@@ -157,14 +206,44 @@ function gettingData(){
     //Setting beer level data in the template
     
     let beerData = data.taps;
+    beerData.sort(function (a, b) {
+        return a.level - b.level;
+    });
     beerData.forEach(function(tap){
         let beerLevelTemplate = document.querySelector("#beerLevelTemplate").content;
         let beerLevelClone = beerLevelTemplate.cloneNode(true);
         let beerName = beerLevelClone.querySelector(".beer-left h2");
         let beerLevel = beerLevelClone.querySelector(".beer-level");
+        let beerLevelOutline = beerLevelClone.querySelector(".beer-level-outline");
+        
+        
 
-        beerName.textContent = "Beer: "+tap.beer;
-        beerLevel.textContent = "Level: "+tap.level;
+        beerName.textContent = tap.beer;
+
+        let newTapLevel = tap.level/15;
+        beerLevel.style.height = newTapLevel+"px";
+        beerLevel.textContent = Math.round((tap.level/2500*100))+"%";
+        if(tap.level>=2000){
+            beerLevel.style.backgroundColor="#00e276";
+            beerLevelOutline.style.border="2px solid #00e276";
+            beerName.style.color="#00e276";
+        }
+        if(tap.level>=800&&tap.level<2000){
+            beerLevel.style.backgroundColor="#ffb32c";
+            beerLevelOutline.style.border="2px solid #ffb32c";
+            beerName.style.color="#ffb32c";
+        }
+        if(tap.level<800){
+            beerLevel.style.backgroundColor="#ff4c2e";
+            beerLevelOutline.style.border="2px solid #ff4c2e";
+            beerName.style.color="#ff4c2e";
+        }
+        if(tap.level<20){
+            let newTapLevelTwo=newTapLevel+20;
+            beerLevel.style.height = newTapLevelTwo+"px";
+            beerLevel.style.backgroundColor="white";
+            beerLevel.style.color="#ff4c2e";
+        }
 
         dashboardBeerLevel.appendChild(beerLevelClone);
     });
@@ -191,11 +270,13 @@ function gettingData(){
 
     peopleInQueue.textContent = "People in queue: "+queueData.length;
     for(i=1; i<=queueData.length; i++){
-        let person = document.createElement("div");
-        //person.setAttribute("src","person.svg");
+        let person = document.createElement("img");
+        person.setAttribute("src","images/person.svg");
         person.style.height = "100px";
         person.style.width = "50px";
-        person.style.backgroundColor = "red";
+
+        peopleInQueue.style.height=queueData.length*50;
+
         queueViz.appendChild(person);
     }
 
@@ -223,20 +304,48 @@ function gettingData(){
     
     let storageData = data.storage;
 
+    storageData.sort(function (a, b) {
+        return a.amount - b.amount;
+    });
+
     storageData.forEach(function(storageUnit){
         let storageInfoTemplate = document.querySelector("#storageInfoTemplate").content;
         let storageClone = storageInfoTemplate.cloneNode(true);
         let storageStatus = storageClone.querySelector(".storage-status progress");
         let storageName = storageClone.querySelector(".storage-name");
         let storageWarning = storageClone.querySelector(".storage-warning");
+        let progressEl = storageClone.querySelector("progress");
+        let progressBox = storageClone.querySelector(".progress-box");
 
         storageName.textContent = storageUnit.name;
-        storageStatus.setAttribute("value", storageUnit.amount);
-        dashboardStorageInfo.appendChild(storageClone);
+        if(storageUnit.amount==1){
+            storageStatus.setAttribute("value", storageUnit.amount+2);
+        }
+        if(storageUnit.amount>=2){
+            storageStatus.setAttribute("value", storageUnit.amount+1);
+        }
+        // if(storageUnit.amount>2){
+        //     storageStatus.setAttribute("value", storageUnit.amount);
+        // }
+        progressEl.dataset.label=storageUnit.amount+"/10";
 
         if(storageUnit.amount<3){
-            storageWarning.textContent = "You need to buy more "+storageUnit.name+" beer"
-        }
+            progressBox.classList.add("low-storage");
+            storageName.style.color="#ff4c2e";
+            storageWarning.innerHTML = "<i class='fas fa-exclamation-triangle'></i> Soon out of stock";
+        };
+        if(storageUnit.amount>=3&&storageUnit.amount<7){
+            progressBox.classList.add("medium-storage");
+            storageName.style.color="#ffb32c";
+        };
+        if(storageUnit.amount>=7){
+            progressBox.classList.add("high-storage");
+            storageName.style.color="#00e276";
+        };
+
+        dashboardStorageInfo.appendChild(storageClone);
+
+        
     });
 
     let beertypeData = data.beertypes;
