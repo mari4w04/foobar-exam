@@ -2,7 +2,7 @@
 window.addEventListener("load", gettingData);
 let data;
 //Getting data every 10 seconds
-setInterval(gettingData, 1000);
+setInterval(gettingData, 10000000);
 
 let allOrders = 0; 
 let b1Customers = [], b2Customers = [], b3Customers = [], i;
@@ -44,8 +44,57 @@ function gettingData(){
     let barInfoTemplate = document.querySelector("#barInfoTemplate").content;
     let barClone = barInfoTemplate.cloneNode(true);
     let statusBoard = barClone.querySelector(".status-board");
-    statusBoard.textContent = barData.closingTime;
+    let barName = barClone.querySelector(".bar-name");
+    let closesInDiv = barClone.querySelector(".closes-in");
+    
+    barName.textContent = barData.name + " dashboard";
     dashboardBarInfo.appendChild(barClone);
+
+    let now     = new Date(); 
+    let year    = now.getFullYear();
+    let month   = now.getMonth()+1; 
+    let day     = now.getDate();
+    let hour    = now.getHours();
+    let minute  = now.getMinutes();
+
+    console.log("Time: "+hour+":"+minute);
+
+    let hoursInMinutes = hour*60;
+
+    let currentTimeInMinutes = hoursInMinutes+minute;
+
+    //console.log(hoursInMinutes);
+    //console.log(currentTimeInMinutes);
+
+    //22:00 = 1320
+    //23:00 = 1380
+    //00:00 = 0
+    //01:00 = 60
+    //02:00 = 120
+    //03:00 = 180
+    //04:00 = 240
+    //05:00 = 300
+    //06:00 = 360
+    //07:00 = 420
+    //08:00 = 480
+    //09:00 = 540
+
+    if((currentTimeInMinutes>=1320 && currentTimeInMinutes<=1380)||(currentTimeInMinutes>=0 && currentTimeInMinutes<=540)){
+        statusBoard.innerHTML = "Bar is <span class='bar-closed'>closed</span>";
+    }else{
+        statusBoard.innerHTML = "Bar is <span class='bar-open'>open</span>";
+        //console.log("Minutes until closing time: "+(1320-currentTimeInMinutes));
+        let closesIn = Math.round((1320-currentTimeInMinutes)/60);
+        closesInDiv.textContent = "Closes in "+closesIn+" hours";
+    }
+
+    console.log("Opens in ");
+
+    //540 - (-60) 
+    //if 1380, then 1380-1500 
+    //if 1320, then 1320-1380
+
+
 
     //Setting beer info data in the template
     //....
