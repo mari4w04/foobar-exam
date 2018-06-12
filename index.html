@@ -11,13 +11,16 @@
 
     <div id="dashboard">
         <div class="bar-info"></div>
-        <div class="beer-info"></div>
-        <div class="beer-level">
-            <h1>BEER LEVELS</h1>
+        <div class="cards">
+            <div class="bartender-info card"></div>
+            <div class="beer-level card">
+                <h1>BEER LEVELS</h1>
+            </div>
+            <div class="queue-info card"></div>
+            <div class="serving-info card"></div>
+            <div class="storage-info card"></div>
+            <div class="beer-info card"></div>
         </div>
-        <div class="bartender-info"></div>
-        <div class="queue-info"></div>
-        <div class="serving-info"></div>
     </div>
 
     <template id="barInfoTemplate">
@@ -64,6 +67,7 @@
         <div class="bartender">
             <h2>Bartender name</h2>
             <div class="bartender-status">Bartender status</div>
+            <div class="people-served">People served</div>
             <img src="" alt="" class="bartender-image">
         </div>
     </template>
@@ -71,11 +75,22 @@
     <template id="queueInfoTemplate">
     <!-- Displaying the queue -->
         <div class="people-in-queue">People in queue</div>
+        <div class="queue"></div>
     </template>
 
     <template id="servingInfoTemplate">
     <!-- Displaying serving order or queue -->
         <div class="beers-served">Amount of beers served</div>
+        <h2>Beers served</h2>
+    </template>
+
+    <template id="storageInfoTemplate">
+    <!-- Displaying the queue -->
+        <div class="one-status">
+            <div class="storage-name">Beer name</div>
+            <div class="storage-status"><progress max="10" value=""></div>
+            <div class="storage-warning"></div>
+        </div>
     </template>
 
     <!-- Most popular beer -->

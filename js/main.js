@@ -2,37 +2,37 @@
 window.addEventListener("load", gettingData);
 let data;
 //Getting data every 10 seconds
-setInterval(gettingData, 100000000);
-
-let mydata = {"timestamp":1528367748568,"bar":{"closingTime":"22:00:00"},"queue":[{"id":7,"startTime":1528367719084,"order":["Fairy Tale Ale","GitHop","GitHop","Row 26"]}],"serving":[{"id":4,"startTime":1528367689083,"order":["Hoppily Ever After","Row 26"]},{"id":5,"startTime":1528367689083,"order":["El Hefe","El Hefe","GitHop","Row 26"]},{"id":6,"startTime":1528367689083,"order":["Fairy Tale Ale","Fairy Tale Ale","Hoppily Ever After"]}],"bartenders":[{"name":"Peter","status":"WORKING"},{"name":"Jonas","status":"WORKING"},{"name":"Martin","status":"WORKING"}],"taps":[{"level":2450,"capacity":2500,"beer":"El Hefe"},{"level":2400,"capacity":2500,"beer":"Fairy Tale Ale"},{"level":2450,"capacity":2500,"beer":"GitHop"},{"level":2400,"capacity":2500,"beer":"Hollaback Lager"},{"level":2300,"capacity":2500,"beer":"Hoppily Ever After"},{"level":2450,"capacity":2500,"beer":"Row 26"},{"level":2350,"capacity":2500,"beer":"Sleighride"}],"storage":[{"name":"El Hefe","amount":6},{"name":"Fairy Tale Ale","amount":8},{"name":"GitHop","amount":4},{"name":"Hollaback Lager","amount":1},{"name":"Hoppily Ever After","amount":5},{"name":"Mowintime","amount":7},{"name":"Row 26","amount":8},{"name":"Ruined Childhood","amount":3},{"name":"Sleighride","amount":3},{"name":"Steampunk","amount":8}],"beertypes":[{"name":"El Hefe","category":"Hefeweizen","pouringSpeed":5,"popularity":1,"alc":5.4,"label":"elhefe.png","description":{"aroma":"Low to moderate grainy wheat or rye character.  Some malty sweetness is acceptable.  Esters can be moderate to none, although should reflect American yeast strains.  The clove and banana aromas common to German hefeweizens are inappropriate.  Hop aroma may be low to moderate, and can have either a citrusy American or a spicy or floral noble hop character.  Slight crisp sharpness is optional.  No diacetyl.","appearance":"Usually pale yellow to gold.  Clarity may range from brilliant to hazy with yeast approximating the German hefeweizen style of beer.  Big, long-lasting white head.","flavor":"Light to moderately strong grainy wheat or rye flavor, which can linger into the finish.  Rye versions are richer and spicier than wheat.  May have a moderate malty sweetness or finish quite dry.  Low to moderate hop bitterness, which sometimes lasts into the finish.  Low to moderate hop flavor (citrusy American or spicy/floral noble).  Esters can be moderate to none, but should not take on a German Weizen character (banana).  No clove phenols, although a light spiciness from wheat or rye is acceptable.  May have a slightly crisp or sharp finish.  No diacetyl.","mouthfeel":"Medium-light to medium body.  Medium-high to high carbonation.  May have a light alcohol warmth in stronger examples.","overallImpression":"Refreshing wheat or rye beers that can display more hop character and less yeast character than their German cousins."}},{"name":"Fairy Tale Ale","category":"IPA","pouringSpeed":5,"popularity":1,"alc":7.9,"label":"fairytaleale.png","description":{"aroma":"A prominent to intense hop aroma with a citrusy, floral, perfume-like, resinous, piney, and/or fruity character derived from American hops.  Many versions are dry hopped and can have an additional grassy aroma, although this is not required.  Some clean malty sweetness may be found in the background, but should be at a lower level than in English examples.  Fruitiness, either from esters or hops, may also be detected in some versions, although a neutral fermentation character is also acceptable.  Some alcohol may be noted.","appearance":"Color ranges from medium gold to medium reddish copper; some versions can have an orange-ish tint.  Should be clear, although unfiltered dry-hopped versions may be a bit hazy.  Good head stand with white to off-white color should persist.","flavor":"Hop flavor is medium to high, and should reflect an American hop character with citrusy, floral, resinous, piney or fruity aspects.  Medium-high to very high hop bitterness, although the malt backbone will support the strong hop character and provide the best balance.  Malt flavor should be low to medium, and is generally clean and malty sweet although some caramel or toasty flavors are acceptable at low levels. No diacetyl.  Low fruitiness is acceptable but not required.  The bitterness may linger into the aftertaste but should not be harsh.  Medium-dry to dry finish.  Some clean alcohol flavor can be noted in stronger versions.  Oak is inappropriate in this style.  May be slightly sulfury, but most examples do not exhibit this character.","mouthfeel":"Smooth, medium-light to medium-bodied mouthfeel without hop-derived astringency, although moderate to medium-high carbonation can combine to render an overall dry sensation in the presence of malt sweetness.  Some smooth alcohol warming can and should be sensed in stronger (but not all) versions.  Body is generally less than in English counterparts.","overallImpression":"A decidedly hoppy and bitter, moderately strong American pale ale."}},{"name":"GitHop","category":"IPA","pouringSpeed":5,"popularity":1,"alc":8.7,"label":"githop.png","description":{"aroma":"A prominent to intense hop aroma with a citrusy, floral, perfume-like, resinous, piney, and/or fruity character derived from American hops.  Many versions are dry hopped and can have an additional grassy aroma, although this is not required.  Some clean malty sweetness may be found in the background, but should be at a lower level than in English examples.  Fruitiness, either from esters or hops, may also be detected in some versions, although a neutral fermentation character is also acceptable.  Some alcohol may be noted.","appearance":"Color ranges from medium gold to medium reddish copper; some versions can have an orange-ish tint.  Should be clear, although unfiltered dry-hopped versions may be a bit hazy.  Good head stand with white to off-white color should persist.","flavor":"Hop flavor is medium to high, and should reflect an American hop character with citrusy, floral, resinous, piney or fruity aspects.  Medium-high to very high hop bitterness, although the malt backbone will support the strong hop character and provide the best balance.  Malt flavor should be low to medium, and is generally clean and malty sweet although some caramel or toasty flavors are acceptable at low levels. No diacetyl.  Low fruitiness is acceptable but not required.  The bitterness may linger into the aftertaste but should not be harsh.  Medium-dry to dry finish.  Some clean alcohol flavor can be noted in stronger versions.  Oak is inappropriate in this style.  May be slightly sulfury, but most examples do not exhibit this character.","mouthfeel":"Smooth, medium-light to medium-bodied mouthfeel without hop-derived astringency, although moderate to medium-high carbonation can combine to render an overall dry sensation in the presence of malt sweetness.  Some smooth alcohol warming can and should be sensed in stronger (but not all) versions.  Body is generally less than in English counterparts.","overallImpression":"A decidedly hoppy and bitter, moderately strong American pale ale."}},{"name":"Hollaback Lager","category":"Oktoberfest","pouringSpeed":5,"popularity":1,"alc":6.5,"label":"hollaback.png","description":{"aroma":"Rich German malt aroma (of Vienna and/or Munich malt).  A light to moderate toasted malt aroma is often present.  Clean lager aroma with no fruity esters or diacetyl.  No hop aroma.  Caramel aroma is inappropriate.","appearance":"Dark gold to deep orange-red color. Bright clarity, with solid, off-white, foam stand.","flavor":"Initial malty sweetness, but finish is moderately dry.  Distinctive and complex maltiness often includes a toasted aspect.  Hop bitterness is moderate, and noble hop flavor is low to none. Balance is toward malt, though the finish is not sweet.  Noticeable caramel or roasted flavors are inappropriate.  Clean lager character with no diacetyl or fruity esters.","mouthfeel":"Medium body, with a creamy texture and medium carbonation.  Smooth.  Fully fermented, without a cloying finish.","overallImpression":"Smooth, clean, and rather rich, with a depth of malt character.  This is one of the classic malty styles, with a maltiness that is often described as soft, complex, and elegant but never cloying."}},{"name":"Hoppily Ever After","category":"IPA","pouringSpeed":5,"popularity":1,"alc":4.5,"label":"hoppilyeverafter.png","description":{"aroma":"A prominent to intense hop aroma with a citrusy, floral, perfume-like, resinous, piney, and/or fruity character derived from American hops.  Many versions are dry hopped and can have an additional grassy aroma, although this is not required.  Some clean malty sweetness may be found in the background, but should be at a lower level than in English examples.  Fruitiness, either from esters or hops, may also be detected in some versions, although a neutral fermentation character is also acceptable.  Some alcohol may be noted.","appearance":"Color ranges from medium gold to medium reddish copper; some versions can have an orange-ish tint.  Should be clear, although unfiltered dry-hopped versions may be a bit hazy.  Good head stand with white to off-white color should persist.","flavor":"Hop flavor is medium to high, and should reflect an American hop character with citrusy, floral, resinous, piney or fruity aspects.  Medium-high to very high hop bitterness, although the malt backbone will support the strong hop character and provide the best balance.  Malt flavor should be low to medium, and is generally clean and malty sweet although some caramel or toasty flavors are acceptable at low levels. No diacetyl.  Low fruitiness is acceptable but not required.  The bitterness may linger into the aftertaste but should not be harsh.  Medium-dry to dry finish.  Some clean alcohol flavor can be noted in stronger versions.  Oak is inappropriate in this style.  May be slightly sulfury, but most examples do not exhibit this character.","mouthfeel":"Smooth, medium-light to medium-bodied mouthfeel without hop-derived astringency, although moderate to medium-high carbonation can combine to render an overall dry sensation in the presence of malt sweetness.  Some smooth alcohol warming can and should be sensed in stronger (but not all) versions.  Body is generally less than in English counterparts.","overallImpression":"A decidedly hoppy and bitter, moderately strong American pale ale."}},{"name":"Mowintime","category":"European Lager","pouringSpeed":5,"popularity":1,"alc":4,"label":"mowintime.png","description":{"aroma":"Rich German malt aroma (of Vienna and/or Munich malt).  A light to moderate toasted malt aroma is often present.  Clean lager aroma with no fruity esters or diacetyl.  No hop aroma.  Caramel aroma is inappropriate.","appearance":"Dark gold to deep orange-red color. Bright clarity, with solid, off-white, foam stand.","flavor":"Initial malty sweetness, but finish is moderately dry.  Distinctive and complex maltiness often includes a toasted aspect.  Hop bitterness is moderate, and noble hop flavor is low to none. Balance is toward malt, though the finish is not sweet.  Noticeable caramel or roasted flavors are inappropriate.  Clean lager character with no diacetyl or fruity esters.","mouthfeel":"Medium body, with a creamy texture and medium carbonation.  Smooth.  Fully fermented, without a cloying finish.","overallImpression":"Smooth, clean, and rather rich, with a depth of malt character.  This is one of the classic malty styles, with a maltiness that is often described as soft, complex, and elegant but never cloying."}},{"name":"Row 26","category":"Stout","pouringSpeed":5,"popularity":1,"alc":6.2,"label":"row26.png","description":{"aroma":"Moderate to strong aroma of roasted malts, often having a roasted coffee or dark chocolate quality.  Burnt or charcoal aromas are low to none.  Medium to very low hop aroma, often with a citrusy or resiny American hop character.  Esters are optional, but can be present up to medium intensity.  Light alcohol-derived aromatics are also optional.  No diacetyl.","appearance":"Generally a jet black color, although some may appear very dark brown.  Large, persistent head of light tan to light brown in color.  Usually opaque.","flavor":"Moderate to very high roasted malt flavors, often tasting of coffee, roasted coffee beans, dark or bittersweet chocolate.  May have a slightly burnt coffee ground flavor, but this character should not be prominent if present.  Low to medium malt sweetness, often with rich chocolate or caramel flavors.  Medium to high bitterness. Hop flavor can be low to high, and generally reflects citrusy or resiny American varieties.  Light esters may be present but are not required.  Medium to dry finish, occasionally with a light burnt quality.  Alcohol flavors can be present up to medium levels, but smooth.  No diacetyl.","mouthfeel":"Medium to full body.  Can be somewhat creamy, particularly if a small amount of oats have been used to enhance mouthfeel.  Can have a bit of roast-derived astringency, but this character should not be excessive.  Medium-high to high carbonation.  Light to moderately strong alcohol warmth, but smooth and not excessively hot.","overallImpression":"A hoppy, bitter, strongly roasted Foreign-style Stout (of the export variety)."}},{"name":"Ruined Childhood","category":"Belgian Specialty Ale","pouringSpeed":5,"popularity":1,"alc":10,"label":"ruinedchildhood.png","description":{"aroma":"Variable.  Most exhibit varying amounts of fruity esters, spicy phenols and/or yeast-borne aromatics.  Aromas from actual spice additions may be present.  Hop aroma may be none to high, and may include a dry-hopped character.  Malt aroma may be low to high, and may include character of non-barley grains such as wheat or rye.  Some may include aromas of Belgian microbiota, most commonly Brettanomyces and/or Lactobacillus.  No diacetyl.","appearance":"Variable.  Color varies considerably from pale gold to very dark.  Clarity may be hazy to clear.  Head retention is usually good.  Generally moderate to high carbonation.","flavor":"Variable.  A great variety of flavors are found in these beers.  Maltiness may be light to quite rich.  Hop flavor and bitterness may be low to high.  Spicy flavors may be imparted by yeast (phenolics) and/or actual spice additions.  May include characteristics of grains other than barley, such as wheat or rye.  May include flavors produced by Belgian microbiota such as Brettanomyces or Lactobacillus.  May include flavors from adjuncts such as caramelized sugar syrup or honey.","mouthfeel":"Variable.  Some are well-attenuated, thus fairly light-bodied for their original gravity, while others are thick and rich.  Most are moderately to highly carbonated.  A warming sensation from alcohol may be present in stronger examples.  A “mouth puckering” sensation may be present from acidity.","overallImpression":"Variable.  This category encompasses a wide range of Belgian ales produced by truly artisanal brewers more concerned with creating unique products than in increasing sales."}},{"name":"Sleighride","category":"Belgian Specialty Ale","pouringSpeed":5,"popularity":1,"alc":8.5,"label":"sleighride.png","description":{"aroma":"Variable.  Most exhibit varying amounts of fruity esters, spicy phenols and/or yeast-borne aromatics.  Aromas from actual spice additions may be present.  Hop aroma may be none to high, and may include a dry-hopped character.  Malt aroma may be low to high, and may include character of non-barley grains such as wheat or rye.  Some may include aromas of Belgian microbiota, most commonly Brettanomyces and/or Lactobacillus.  No diacetyl.","appearance":"Variable.  Color varies considerably from pale gold to very dark.  Clarity may be hazy to clear.  Head retention is usually good.  Generally moderate to high carbonation.","flavor":"Variable.  A great variety of flavors are found in these beers.  Maltiness may be light to quite rich.  Hop flavor and bitterness may be low to high.  Spicy flavors may be imparted by yeast (phenolics) and/or actual spice additions.  May include characteristics of grains other than barley, such as wheat or rye.  May include flavors produced by Belgian microbiota such as Brettanomyces or Lactobacillus.  May include flavors from adjuncts such as caramelized sugar syrup or honey.","mouthfeel":"Variable.  Some are well-attenuated, thus fairly light-bodied for their original gravity, while others are thick and rich.  Most are moderately to highly carbonated.  A warming sensation from alcohol may be present in stronger examples.  A “mouth puckering” sensation may be present from acidity.","overallImpression":"Variable.  This category encompasses a wide range of Belgian ales produced by truly artisanal brewers more concerned with creating unique products than in increasing sales."}},{"name":"Steampunk","category":"California Common","pouringSpeed":5,"popularity":1,"alc":5,"label":"steampunk.png","description":{"aroma":"Typically showcases the signature Northern Brewer hops (with woody, rustic or minty qualities) in moderate to high strength.  Light fruitiness acceptable.  Low to moderate caramel and/or toasty malt aromatics support the hops.  No diacetyl.","appearance":"Medium amber to light copper color.  Generally clear.  Moderate off-white head with good retention.","flavor":"Moderately malty with a pronounced hop bitterness.  The malt character is usually toasty (not roasted) and caramelly.  Low to moderately high hop flavor, usually showing Northern Brewer qualities (woody, rustic, minty).  Finish fairly dry and crisp, with a lingering hop bitterness and a firm, grainy malt flavor.  Light fruity esters are acceptable, but otherwise clean.  No diacetyl.","mouthfeel":"Medium-bodied.  Medium to medium-high carbonation.","overallImpression":"A lightly fruity beer with firm, grainy maltiness, interesting toasty and caramel flavors, and showcasing the signature Northern Brewer varietal hop character."}}]}
+setInterval(gettingData, 1000);
 
 let allOrders = 0; 
+let b1Customers = [], b2Customers = [], b3Customers = [], i;
+let mydata = {"timestamp":1528704419454,"bar":{"name":"FooBar","closingTime":"22:00:00"},"queue":[{"id":8,"startTime":1528704336575,"order":["Hoppily Ever After","Hoppily Ever After","Mowintime","Ruined Childhood"]},{"id":9,"startTime":1528704336575,"order":["Mowintime"]},{"id":10,"startTime":1528704396577,"order":["Hollaback Lager","Steampunk"]},{"id":11,"startTime":1528704396577,"order":["Mowintime","Mowintime"]}],"serving":[{"id":5,"startTime":1528704336575,"order":["Hollaback Lager","Hollaback Lager","Mowintime","Mowintime"]},{"id":6,"startTime":1528704336575,"order":["Hoppily Ever After","Hoppily Ever After","Steampunk"]},{"id":7,"startTime":1528704336575,"order":["Hoppily Ever After","Mowintime","Mowintime","Steampunk"]}],"bartenders":[{"name":"Peter","status":"WORKING","statusDetail":"pourBeer","usingTap":3,"servingCustomer":7},{"name":"Jonas","status":"WORKING","statusDetail":"pourBeer","usingTap":1,"servingCustomer":5},{"name":"Martin","status":"WORKING","statusDetail":"pourBeer","usingTap":2,"servingCustomer":6}],"taps":[{"id":0,"level":2300,"capacity":2500,"beer":"Hoppily Ever After","inUse":false},{"id":1,"level":2200,"capacity":2500,"beer":"Mowintime","inUse":true},{"id":2,"level":2400,"capacity":2500,"beer":"Steampunk","inUse":true},{"id":3,"level":2450,"capacity":2500,"beer":"Hoppily Ever After","inUse":true},{"id":4,"level":2450,"capacity":2500,"beer":"Ruined Childhood","inUse":false},{"id":5,"level":2350,"capacity":2500,"beer":"Hollaback Lager","inUse":false},{"id":6,"level":2400,"capacity":2500,"beer":"Mowintime","inUse":false}],"storage":[{"name":"El Hefe","amount":5},{"name":"Fairy Tale Ale","amount":5},{"name":"GitHop","amount":6},{"name":"Hollaback Lager","amount":4},{"name":"Hoppily Ever After","amount":6},{"name":"Mowintime","amount":6},{"name":"Row 26","amount":9},{"name":"Ruined Childhood","amount":5},{"name":"Sleighride","amount":2},{"name":"Steampunk","amount":8}]};
 
 function gettingData(){
     
     let dashboardBarInfo = document.querySelector(".bar-info");
-    let dashboardBeerInfo = document.querySelector(".beer-info");
+    let dashboardBartenderInfo = document.querySelector(".bartender-info");
     let dashboardBeerLevel = document.querySelector(".beer-level");
     let dashboardQueueInfo = document.querySelector(".queue-info");
     let dashboardServingInfo = document.querySelector(".serving-info");
+    let dashboardStorageInfo = document.querySelector(".storage-info");
+    let dashboardBeerInfo = document.querySelector(".beer-info");
+
 
     dashboardBarInfo.innerHTML = "";
-    dashboardBeerInfo.innerHTML = "";
+    dashboardBartenderInfo.innerHTML = "";
     dashboardBeerLevel.innerHTML = "";
     dashboardQueueInfo.innerHTML = "";
     dashboardServingInfo.innerHTML = "";
+    dashboardStorageInfo.innerHTML = "";
+    dashboardBeerInfo.innerHTML = "";
 
     data = JSON.parse(FooBar.getData()); //mydata
     
     console.log(data);
 
         
-    let beerInfoTemplate = document.querySelector("#beerInfoTemplate").content;
     
-
-    
-    
-    let beerClone = beerInfoTemplate.cloneNode(true);
     
 
 
@@ -51,19 +51,59 @@ function gettingData(){
     //....
     
     //Setting bartender data in the template
-    
+
     let bartenderData = data.bartenders;
     bartenderData.forEach(function(bartender){
         let bartenderInfoTemplate = document.querySelector("#bartenderInfoTemplate").content;
         let bartenderClone = bartenderInfoTemplate.cloneNode(true);
         let bartenderName = bartenderClone.querySelector(".bartender h2");
         let bartenderStatus = bartenderClone.querySelector(".bartender-status");
+        let bartenderPeopleServed = bartenderClone.querySelector(".bartender .people-served");
 
         bartenderName.textContent = "Bartender: "+bartender.name;
         bartenderStatus.textContent = "Status: "+bartender.status;
+        
+        
+        //console.log("Serving customer: "+bartender.servingCustomer);
 
-        dashboardBeerInfo.appendChild(bartenderClone);
+        if(bartender.name=="Jonas"){
+            if(bartender.servingCustomer==null){
+                console.log("Current customer for Jonas: "+bartender.servingCustomer);
+                console.log("Array of served customers for Jonas: "+b1Customers);
+            }else{
+                b1Customers.push(bartender.servingCustomer);
+                console.log("Current customer for Jonas: "+bartender.servingCustomer);
+                console.log("Array of served customers for Jonas: "+b1Customers);
+            }
+            bartenderPeopleServed.textContent = "People served: "+b1Customers.length;
+        }
+        if(bartender.name=="Peter"){
+            if(bartender.servingCustomer==null){
+                console.log("Current customer for Peter: "+bartender.servingCustomer);
+                console.log("Array of served customers for Peter: "+b2Customers);
+            }else{
+                b2Customers.push(bartender.servingCustomer);
+                console.log("Current customer for Peter: "+bartender.servingCustomer);
+                console.log("Array of served customers for Peter: "+b2Customers);
+            }
+            bartenderPeopleServed.textContent = "People served: "+b2Customers.length;
+        }
+        if(bartender.name=="Martin"){
+            if(bartender.servingCustomer==null){
+                console.log("Current customer for Martin: "+bartender.servingCustomer);
+                console.log("Array of served customers for Martin: "+b3Customers);
+            }else{
+                b3Customers.push(bartender.servingCustomer);
+                console.log("Current customer for Martin: "+bartender.servingCustomer);
+                console.log("Array of served customers for Martin: "+b3Customers);
+            }
+            bartenderPeopleServed.textContent = "People served: "+b3Customers.length;
+        }
+
+        dashboardBartenderInfo.appendChild(bartenderClone);
     });
+
+    
 
     //Setting beer level data in the template
     
@@ -86,20 +126,29 @@ function gettingData(){
     //test for serving queue:
     let orderLength;
     
-    queueData.forEach(function(queue){
-        console.log(queue.order.length);
-        orderLength = queue.order.length;
-        allOrders += orderLength;
-    });
+    // queueData.forEach(function(queue){
+    //     console.log(queue.order.length);
+    //     orderLength = queue.order.length;
+    //     allOrders += orderLength;
+    // });
     
     
-    console.log("Orders in total: "+allOrders);
+    
 
     let queueInfoTemplate = document.querySelector("#queueInfoTemplate").content;
     let queueClone = queueInfoTemplate.cloneNode(true);
     let peopleInQueue = queueClone.querySelector(".people-in-queue");
+    let queueViz = queueClone.querySelector(".queue");
 
     peopleInQueue.textContent = "People in queue: "+queueData.length;
+    for(i=1; i<=queueData.length; i++){
+        let person = document.createElement("div");
+        //person.setAttribute("src","person.svg");
+        person.style.height = "100px";
+        person.style.width = "50px";
+        person.style.backgroundColor = "red";
+        queueViz.appendChild(person);
+    }
 
     dashboardQueueInfo.appendChild(queueClone);
 
@@ -112,9 +161,58 @@ function gettingData(){
     let beersServed = servingClone.querySelector(".beers-served");
 
     servingData.forEach(function(oneServe){
-        console.log(oneServe.order.length);
+        //console.log(oneServe.order.length);
+        orderLength = oneServe.order.length;
+        allOrders += orderLength;
     });
 
+    beersServed.textContent = allOrders;
+    dashboardServingInfo.appendChild(servingClone);
+
+    //console.log("Orders in total: "+allOrders);
+    
+    
+    let storageData = data.storage;
+
+    storageData.forEach(function(storageUnit){
+        let storageInfoTemplate = document.querySelector("#storageInfoTemplate").content;
+        let storageClone = storageInfoTemplate.cloneNode(true);
+        let storageStatus = storageClone.querySelector(".storage-status progress");
+        let storageName = storageClone.querySelector(".storage-name");
+        let storageWarning = storageClone.querySelector(".storage-warning");
+
+        storageName.textContent = storageUnit.name;
+        storageStatus.setAttribute("value", storageUnit.amount);
+        dashboardStorageInfo.appendChild(storageClone);
+
+        if(storageUnit.amount<3){
+            storageWarning.textContent = "You need to buy more "+storageUnit.name+" beer"
+        }
+    });
+
+    let beertypeData = data.beertypes;
+    console.log(beertypeData);
+
+    beertypeData.forEach(function(beertype){
+        let beerInfoTemplate = document.querySelector("#beerInfoTemplate").content;
+        let beerClone = beerInfoTemplate.cloneNode(true);
+        let beerName = beerClone.querySelector(".beer-description h2");
+        let beerAroma = beerClone.querySelector(".aroma");
+        let beerAppearance = beerClone.querySelector(".appearance");
+        let beerFlavor = beerClone.querySelector(".flavor");
+        let beerMouthfeel = beerClone.querySelector(".mouthfeel");
+        let beerOverallImpression = beerClone.querySelector(".overall-impression");
+
+        beerName.textContent = beertype.name;
+        beerAroma.textContent = "Aroma: "+beertype.description.aroma;
+        beerAppearance.textContent = "Appearance: "+beertype.description.appearance;
+        beerFlavor.textContent = "Flavor: "+beertype.description.flavor;
+        beerMouthfeel.textContent = "Mouth feel: "+beertype.description.mouthfeel;
+        beerOverallImpression.textContent = "Overall impression: "+beertype.description.overallImpression;
+
+        dashboardBeerInfo.appendChild(beerClone);
+    });
+    
     
     
 
