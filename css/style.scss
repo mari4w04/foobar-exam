@@ -23,6 +23,7 @@ body{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 30px;
+    margin-top: 15px;
 }
 h2{
     font-size: 15px;
@@ -159,6 +160,8 @@ h2{
     padding: 10px;
     margin-bottom: 15px;
     color: white;
+    text-transform: uppercase;
+    font-size: 15px;
 }
 progress{
     -webkit-appearance: none;
@@ -266,12 +269,35 @@ progress:before{
     align-items: center;
 }
 .modal-content{
-    width: 50%;
+    width: 60%;
     display: flex;
+    max-height: 500px;
     .description{
         background-color: white;
-        width: 100%;
-        padding: 40px;
+        width: 95%;
+        display: flex;
+        .category{
+            display: inline;
+            background-color: $yellow;
+            padding: 3px 10px;
+            margin-left: 5px;
+            color: white;
+        }
+        .aroma{
+            margin-top: 20px;
+        }
+        .aroma, .overall-impression{
+            line-height: 1.5em;
+        }
+        .text{
+            padding: 40px;
+            h2{
+                font-size: 30px;
+                -webkit-margin-before: 0;
+                -webkit-margin-after: 0.5em;
+                display: inline;
+            }
+        }
     }
 }
 .close-btn{
@@ -279,6 +305,11 @@ progress:before{
     color: white;
     height: 50px;
     width: 50px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 .queue-wrapper{
     grid-column: 1 / 7;
@@ -291,4 +322,11 @@ progress:before{
 }
 .storage-wrapper{
     grid-column: 1 / 4;
+}
+.modal-img{
+    height: 100%;
+    width: auto;
+}
+.queue-info{
+    margin-left: 10px;
 }

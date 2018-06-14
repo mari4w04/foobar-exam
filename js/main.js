@@ -5,7 +5,7 @@ window.addEventListener("load", showAllData);
 function showAllData(){
     gettingData();
     //Getting data every 10 seconds
-    setInterval(gettingData, 100000);
+    setInterval(gettingData, 1000);
     getBeerData();
 };
 
@@ -249,7 +249,11 @@ function showQueueData(queueData){
         person.style.height = "100px";
         person.style.width = "50px";
 
-        peopleInQueue.style.width=queueData.length*48+"px";
+        if(queueData.length<=3 || queueData.length==0){
+            peopleInQueue.style.width=3*48+"px";
+        }else{
+            peopleInQueue.style.width=queueData.length*48+"px";
+        }
 
         queueViz.appendChild(person);
     }
@@ -351,13 +355,6 @@ function showBeerTypeData(beertypeData){
 
         let beerInfoTemplate = document.querySelector("#beerInfoTemplate").content;
         let beerClone = beerInfoTemplate.cloneNode(true);
-        let beerName = beerClone.querySelector(".beer-desc h2");
-        let beerDescription = beerClone.querySelector(".beer-desc");
-        let beerAroma = beerClone.querySelector(".aroma");
-        let beerAppearance = beerClone.querySelector(".appearance");
-        let beerFlavor = beerClone.querySelector(".flavor");
-        let beerMouthfeel = beerClone.querySelector(".mouthfeel");
-        let beerOverallImpression = beerClone.querySelector(".overall-impression");
         let beerImg = beerClone.querySelector(".beer-img");
         let beerButton = beerClone.querySelector(".btn");
         
@@ -365,16 +362,16 @@ function showBeerTypeData(beertypeData){
         
         beerImg.setAttribute("src", "images/"+beertype.label);
         
-        beerName.textContent = beertype.name;
-        beerAroma.textContent = "Aroma: "+beertype.description.aroma;
-        beerAppearance.textContent = "Appearance: "+beertype.description.appearance;
-        beerFlavor.textContent = "Flavor: "+beertype.description.flavor;
-        beerMouthfeel.textContent = "Mouth feel: "+beertype.description.mouthfeel;
-        beerOverallImpression.textContent = "Overall impression: "+beertype.description.overallImpression;
+        // beerName.textContent = beertype.name;
+        // beerAroma.textContent = "Aroma: "+beertype.description.aroma;
+        // beerAppearance.textContent = "Appearance: "+beertype.description.appearance;
+        // beerFlavor.textContent = "Flavor: "+beertype.description.flavor;
+        // beerMouthfeel.textContent = "Mouth feel: "+beertype.description.mouthfeel;
+        // beerOverallImpression.textContent = "Overall impression: "+beertype.description.overallImpression;
 
         console.log(beerButton);
         
-        beerDescription.classList.add("hidden");
+        //beerDescription.classList.add("hidden");
         
 
         let modal = document.querySelector('.modal');
@@ -384,9 +381,21 @@ function showBeerTypeData(beertypeData){
 
         function showDetails(data){
 
-            let name = modal.querySelector('.modal-content h1');
+            let name = modal.querySelector('.modal-content h2');
+            let aroma = modal.querySelector('.aroma');
+            let category = modal.querySelector('.category');
+            let flavor = modal.querySelector('.flavor');
+            let mouthfeel = modal.querySelector('.mouthfeel');
+            let overallImpression = modal.querySelector('.overall-impression');
+            let modalImg = modal.querySelector(".modal-img");
+
+            console.log("My data: ");
             console.log(data);
             name.textContent = data.name;
+            aroma.textContent = data.description.aroma;
+            category.textContent = data.category;
+            overallImpression.textContent = data.description.overallImpression;
+            modalImg.setAttribute("src","images/"+data.label);
 
             modal.classList.remove('hidden');
         };

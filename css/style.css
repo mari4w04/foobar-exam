@@ -19,7 +19,8 @@ body {
 .cards {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-gap: 30px; }
+  grid-gap: 30px;
+  margin-top: 15px; }
 
 h2 {
   font-size: 15px; }
@@ -155,7 +156,9 @@ h2 {
   background-color: #00e276;
   padding: 10px;
   margin-bottom: 15px;
-  color: white; }
+  color: white;
+  text-transform: uppercase;
+  font-size: 15px; }
 
 progress {
   -webkit-appearance: none;
@@ -259,18 +262,41 @@ progress:before {
   align-items: center; }
 
 .modal-content {
-  width: 50%;
-  display: flex; }
+  width: 60%;
+  display: flex;
+  max-height: 500px; }
   .modal-content .description {
     background-color: white;
-    width: 100%;
-    padding: 40px; }
+    width: 95%;
+    display: flex; }
+    .modal-content .description .category {
+      display: inline;
+      background-color: #ffb32c;
+      padding: 3px 10px;
+      margin-left: 5px;
+      color: white; }
+    .modal-content .description .aroma {
+      margin-top: 20px; }
+    .modal-content .description .aroma, .modal-content .description .overall-impression {
+      line-height: 1.5em; }
+    .modal-content .description .text {
+      padding: 40px; }
+      .modal-content .description .text h2 {
+        font-size: 30px;
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0.5em;
+        display: inline; }
 
 .close-btn {
   background-color: black;
   color: white;
   height: 50px;
-  width: 50px; }
+  width: 50px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; }
 
 .queue-wrapper {
   grid-column: 1 / 7; }
@@ -283,3 +309,10 @@ progress:before {
 
 .storage-wrapper {
   grid-column: 1 / 4; }
+
+.modal-img {
+  height: 100%;
+  width: auto; }
+
+.queue-info {
+  margin-left: 10px; }
