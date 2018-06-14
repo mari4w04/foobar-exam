@@ -5,7 +5,7 @@ window.addEventListener("load", showAllData);
 function showAllData(){
     gettingData();
     //Getting data every 10 seconds
-    setInterval(gettingData, 10000);
+    setInterval(gettingData, 1000);
     getBeerData();
 };
 
@@ -13,20 +13,21 @@ let data;
 let dashboardStorageInfo, dashboardQueueInfo, dashboardServingInfo, dashboardBeerLevel, dashboardBarInfo;
 let allOrders = 0; 
 let b1Customers = [], b2Customers = [], b3Customers = [], beersServedIds = [], i;
-let mydata = {"timestamp":1528704419454,"bar":{"name":"FooBar","closingTime":"22:00:00"},"queue":[{"id":8,"startTime":1528704336575,"order":["Hoppily Ever After","Hoppily Ever After","Mowintime","Ruined Childhood"]},{"id":9,"startTime":1528704336575,"order":["Mowintime"]},{"id":10,"startTime":1528704396577,"order":["Hollaback Lager","Steampunk"]},{"id":11,"startTime":1528704396577,"order":["Mowintime","Mowintime"]}],"serving":[{"id":5,"startTime":1528704336575,"order":["Hollaback Lager","Hollaback Lager","Mowintime","Mowintime"]},{"id":6,"startTime":1528704336575,"order":["Hoppily Ever After","Hoppily Ever After","Steampunk"]},{"id":7,"startTime":1528704336575,"order":["Hoppily Ever After","Mowintime","Mowintime","Steampunk"]}],"bartenders":[{"name":"Peter","status":"WORKING","statusDetail":"pourBeer","usingTap":3,"servingCustomer":7},{"name":"Jonas","status":"WORKING","statusDetail":"pourBeer","usingTap":1,"servingCustomer":5},{"name":"Martin","status":"WORKING","statusDetail":"pourBeer","usingTap":2,"servingCustomer":6}],"taps":[{"id":0,"level":2300,"capacity":2500,"beer":"Hoppily Ever After","inUse":false},{"id":1,"level":2200,"capacity":2500,"beer":"Mowintime","inUse":true},{"id":2,"level":2400,"capacity":2500,"beer":"Steampunk","inUse":true},{"id":3,"level":2450,"capacity":2500,"beer":"Hoppily Ever After","inUse":true},{"id":4,"level":2450,"capacity":2500,"beer":"Ruined Childhood","inUse":false},{"id":5,"level":2350,"capacity":2500,"beer":"Hollaback Lager","inUse":false},{"id":6,"level":2400,"capacity":2500,"beer":"Mowintime","inUse":false}],"storage":[{"name":"El Hefe","amount":5},{"name":"Fairy Tale Ale","amount":5},{"name":"GitHop","amount":6},{"name":"Hollaback Lager","amount":4},{"name":"Hoppily Ever After","amount":6},{"name":"Mowintime","amount":6},{"name":"Row 26","amount":9},{"name":"Ruined Childhood","amount":5},{"name":"Sleighride","amount":2},{"name":"Steampunk","amount":8}]};
 
 function getBeerData(){
-    data = JSON.parse(FooBar.getData()); //mydata
+    //Getting data and parsing it
+    data = JSON.parse(FooBar.getData());
     //Setting beer info data in the template
     showBeerTypeData(data.beertypes);
 };
 
 function gettingData(){
-    
+    //Getting data and parsing it
     data = JSON.parse(FooBar.getData()); //mydata
     
     console.log(data);
-    
+
+    //Cleaning up the containers for the data that is being refreshed
     dashboardBeerLevel = document.querySelector(".beer-levels");
     dashboardBeerLevel.innerHTML = "";
     
@@ -67,32 +68,34 @@ function gettingData(){
 };
 
 function showBarData(barData){
+    //Cloning the template
     let barInfoTemplate = document.querySelector("#barInfoTemplate").content;
     let barClone = barInfoTemplate.cloneNode(true);
+    //Selecting elements in the clone
     let statusBoard = barClone.querySelector(".status-board");
     let barName = barClone.querySelector(".bar-name");
     let closesInDiv = barClone.querySelector(".closes-in");
     
+    //Setting the value for the elements in the clone
     barName.textContent = barData.name + " dashboard";
+
+    //Putting the filled in template into the div container in the HTML
     dashboardBarInfo.appendChild(barClone);
 
+    //Getting the current time
     let now     = new Date(); 
-    let year    = now.getFullYear();
-    let month   = now.getMonth()+1; 
-    let day     = now.getDate();
     let hour    = now.getHours();
     let minute  = now.getMinutes();
 
     console.log("Time: "+hour+":"+minute);
 
+    //Converting hours to minutes
     let hoursInMinutes = hour*60;
 
+    //Calculating current time in minutes
     let currentTimeInMinutes = hoursInMinutes+minute;
-    //let currentTimeInMinutes = 510;
 
-    //console.log(hoursInMinutes);
-    //console.log(currentTimeInMinutes);
-
+    //Internal notes, trying to figure out which time is what in minutes
     //22:00 = 1320
     //23:00 = 1380
     //00:00 = 0
@@ -108,6 +111,7 @@ function showBarData(barData){
 
     let opensIn;
 
+    //If current time is between 22:00 and 09:00, then display information that the bar is closed
     if((currentTimeInMinutes>=1320 && currentTimeInMinutes<=1380)||(currentTimeInMinutes>=0 && currentTimeInMinutes<=540)){
         statusBoard.innerHTML = "Bar is <span class='bar-closed'>closed</span>";
 
@@ -120,7 +124,6 @@ function showBarData(barData){
             let newCurrentTimeInMinutesTwo=currentTimeInMinutes-1500;
             console.log('Else IF'+newCurrentTimeInMinutesTwo);
             opensIn = Math.round((540 - newCurrentTimeInMinutesTwo)/60);
-            //PROBLEM HERE
         }
         if(currentTimeInMinutes>=0 && currentTimeInMinutes<=540){
             opensIn = Math.round((540 - currentTimeInMinutes)/60);
@@ -133,14 +136,14 @@ function showBarData(barData){
             closesInDiv.textContent = "Opens in "+opensIn+" hours";
         }
         
-        
-        console.log(opensIn);
+        //Internal notes
         //540 - (-60) 
         //if 1380, then 1380-1500 
         //if 1320, then 1320-1380
+
+        //If current time is from 09:00 until 22:00 then display information that the bar is open:
     }else{
         statusBoard.innerHTML = "Bar is <span class='bar-open'>open</span>";
-        //console.log("Minutes until closing time: "+(1320-currentTimeInMinutes));
         let closesIn = Math.round((1320-currentTimeInMinutes)/60);
         if(closesIn==0){
             let minutesLeft=(1320-currentTimeInMinutes)%60;
@@ -153,23 +156,28 @@ function showBarData(barData){
 }
 
 function showBeerData(beerData){
+    //Sorting out beer levels from the lowest one to the highest one 
     beerData.sort(function (a, b) {
         return a.level - b.level;
     });
     beerData.forEach(function(tap){
+        //Cloning the template
         let beerLevelTemplate = document.querySelector("#beerLevelTemplate").content;
         let beerLevelClone = beerLevelTemplate.cloneNode(true);
+        //Selecting elements in the clone
         let beerName = beerLevelClone.querySelector(".beer-left h2");
         let beerLevel = beerLevelClone.querySelector(".beer-level");
         let beerLevelOutline = beerLevelClone.querySelector(".beer-level-outline");
         
-        
-
+        //Setting the value for the elements in the clone
         beerName.textContent = tap.beer;
 
+        //Making the tap level value 15 times smaller to set the height of a div:
         let newTapLevel = tap.level/15;
         beerLevel.style.height = newTapLevel+"px";
+        //Adding a percentage value to the tap level
         beerLevel.textContent = Math.round((tap.level/2500*100))+"%";
+        //Coloring in tap levels according to how full the tap is. Green - full, yellow - halfway full, red - almost empty
         if(tap.level>=2000){
             beerLevel.style.backgroundColor="#00e276";
             beerLevelOutline.style.border="2px solid #00e276";
@@ -192,72 +200,69 @@ function showBeerData(beerData){
             beerLevel.style.color="#ff4c2e";
         }
 
+        //Putting the filled in template into the div container in the HTML
         dashboardBeerLevel.appendChild(beerLevelClone);
     });
 };
 
 function showServingInfo(servingData){
-    console.log("Serving data:");
-    console.log(servingData);
     let orderLength;
+    //Cloning the template
     let servingInfoTemplate = document.querySelector("#servingInfoTemplate").content;
     let servingClone = servingInfoTemplate.cloneNode(true);
+    //Selecting elements in the clone
     let beersServed = servingClone.querySelector(".beers-served");
     
-
+    //Getting one serving from the "serving" array
     servingData.forEach(function(oneServe){
-        //console.log(oneServe.order.length);
-        
-        
+        //beersServedId is an array that contains all ids of the servings and each time we read something from the serving array, 
+        //we check if this serving has been read before by looking it up in the beersServedId array
         if(beersServedIds.includes(oneServe.id)){
-            console.log("When checked if the array has the ids:");
-            console.log(beersServedIds);
+            //if the beersServedId contains this serving id, then we do nothing
         }else{
-            console.log("In the else statement:");
-            console.log(beersServedIds);
+            //if it doesn't contain the serving id, then we add the id to the array and 
+            //read the lenth of the order to count the total amount of beers sold
             beersServedIds.push(oneServe.id);
             orderLength = oneServe.order.length;
             allOrders += orderLength;
-            console.log(oneServe.order);
         }
         
     });
 
-    
-    // if(b2Customers.includes(bartender.servingCustomer)){
-    //     console.log("Do nothing");
-    // }else{
-    //     b2Customers.push(bartender.servingCustomer);
-    //     console.log(b2Customers);
-    // }
-
     beersServed.textContent = allOrders;
+    //Putting the filled in template into the div container in the HTML
     dashboardServingInfo.appendChild(servingClone);
 }
 
 function showQueueData(queueData){
-    
+    //Cloning the template
     let queueInfoTemplate = document.querySelector("#queueInfoTemplate").content;
     let queueClone = queueInfoTemplate.cloneNode(true);
+    //Selecting elements in the clone
     let peopleInQueue = queueClone.querySelector(".people-in-queue");
     let queueViz = queueClone.querySelector(".queue");
 
+    //Setting the value for the elements in the clone
     peopleInQueue.textContent = "People in queue: "+queueData.length;
+    //putting in the images of people in to the queue
     for(i=1; i<=queueData.length; i++){
         let person = document.createElement("img");
         person.setAttribute("src","images/person.svg");
         person.style.height = "100px";
         person.style.width = "50px";
 
-        if(queueData.length<=3 || queueData.length==0){
+        //If the length of the queue is less than 3, then make the length of the div element that is 
+        //accompanying the queue not less that 3*48
+        if(queueData.length<=3){
             peopleInQueue.style.width=3*48+"px";
+        //Else make the width longer:
         }else{
             peopleInQueue.style.width=queueData.length*48+"px";
         }
-
+        //Put the image of a person into the queue:
         queueViz.appendChild(person);
     }
-
+    //Putting the filled in template into the div container in the HTML
     dashboardQueueInfo.appendChild(queueClone);
 };
 
@@ -265,16 +270,17 @@ function showBartenderData(bartenderData) {
     let dashboardBartenderInfo = document.querySelector(".bartender-info");
     dashboardBartenderInfo.innerHTML = "";
 
-
-  //  let bartenderData = data.bartenders;
     bartenderData.forEach(function(bartender){
+        //Cloning the template
         let bartenderInfoTemplate = document.querySelector("#bartenderInfoTemplate").content;
         let bartenderClone = bartenderInfoTemplate.cloneNode(true);
+        //Selecting elements in the clone
         let bartenderName = bartenderClone.querySelector(".bartender-name");
         let bartenderStatus = bartenderClone.querySelector(".bartender-status");
         let bartenderPeopleServed = bartenderClone.querySelector(".bartender .people-served");
         let bartenderImg = bartenderClone.querySelector(".bartender-image");
 
+        //Setting the value for the elements in the clone
         bartenderName.textContent = bartender.name;
 
         if(bartender.status=='WORKING'){
@@ -284,65 +290,48 @@ function showBartenderData(bartenderData) {
             bartenderStatus.textContent = "Chilling";
         }
 
-        
-        
-        
-        //console.log("Serving customer: "+bartender.servingCustomer);
-
+        //Getting info for each bartender
         if(bartender.name=="Jonas"){
             if(bartender.servingCustomer==null){
-                console.log("Current customer for Jonas: "+bartender.servingCustomer);
-                console.log("Array of served customers for Jonas: "+b1Customers);
+                
             }else{
-                // TODO:: only push if bartender.servingCustomer is not in the array!
+                // Counting the amount of customers served
                 if(b1Customers.includes(bartender.servingCustomer)){
-                    console.log("Do nothing");
+
                 }else{
                     b1Customers.push(bartender.servingCustomer);
-                    console.log(b1Customers);
                 }
-                
-                console.log("Current customer for Jonas: "+bartender.servingCustomer);
-                console.log("Array of served customers for Jonas: "+b1Customers);
             }
             bartenderPeopleServed.textContent = b1Customers.length+" customers served";
             bartenderImg.setAttribute("src", "images/1.jpg");
         }
         if(bartender.name=="Peter"){
             if(bartender.servingCustomer==null){
-                console.log("Current customer for Peter: "+bartender.servingCustomer);
-                console.log("Array of served customers for Peter: "+b2Customers);
+            
             }else{
                 if(b2Customers.includes(bartender.servingCustomer)){
-                    console.log("Do nothing");
                 }else{
                     b2Customers.push(bartender.servingCustomer);
-                    console.log(b2Customers);
                 }
-                console.log("Current customer for Peter: "+bartender.servingCustomer);
-                console.log("Array of served customers for Peter: "+b2Customers);
             }
             bartenderPeopleServed.textContent = b2Customers.length+" customers served";
             bartenderImg.setAttribute("src", "images/2.jpg");
         }
         if(bartender.name=="Martin"){
             if(bartender.servingCustomer==null){
-                console.log("Current customer for Martin: "+bartender.servingCustomer);
-                console.log("Array of served customers for Martin: "+b3Customers);
+
             }else{
                 if(b3Customers.includes(bartender.servingCustomer)){
-                    console.log("Do nothing");
+
                 }else{
                     b3Customers.push(bartender.servingCustomer);
-                    console.log(b3Customers);
                 }
-                console.log("Current customer for Martin: "+bartender.servingCustomer);
-                console.log("Array of served customers for Martin: "+b3Customers);
             }
             bartenderPeopleServed.textContent = b3Customers.length+" customers served";
             bartenderImg.setAttribute("src", "images/3.jpg");
         }
 
+        //Putting the filled in template into the div container in the HTML
         dashboardBartenderInfo.appendChild(bartenderClone);
     });
 
@@ -353,44 +342,28 @@ function showBeerTypeData(beertypeData){
     beertypeData.forEach(function(beertype){
         let dashboardBeerInfo = document.querySelector(".beer-info");
 
+        //Cloning the template
         let beerInfoTemplate = document.querySelector("#beerInfoTemplate").content;
         let beerClone = beerInfoTemplate.cloneNode(true);
+        //Selecting elements in the clone
         let beerImg = beerClone.querySelector(".beer-img");
         let beerButton = beerClone.querySelector(".btn");
-        
+        beerImg.setAttribute("src", "images/"+beertype.label);        
 
-        
-        beerImg.setAttribute("src", "images/"+beertype.label);
-        
-        // beerName.textContent = beertype.name;
-        // beerAroma.textContent = "Aroma: "+beertype.description.aroma;
-        // beerAppearance.textContent = "Appearance: "+beertype.description.appearance;
-        // beerFlavor.textContent = "Flavor: "+beertype.description.flavor;
-        // beerMouthfeel.textContent = "Mouth feel: "+beertype.description.mouthfeel;
-        // beerOverallImpression.textContent = "Overall impression: "+beertype.description.overallImpression;
-
-        console.log(beerButton);
-        
-        //beerDescription.classList.add("hidden");
-        
-
+        //Selecting the modal
         let modal = document.querySelector('.modal');
         let closeButton = document.querySelector(".close-btn");
 
         modal.classList.add("hidden");
 
+        //Showing data in the modal
         function showDetails(data){
-
             let name = modal.querySelector('.modal-content h2');
             let aroma = modal.querySelector('.aroma');
             let category = modal.querySelector('.category');
-            let flavor = modal.querySelector('.flavor');
-            let mouthfeel = modal.querySelector('.mouthfeel');
             let overallImpression = modal.querySelector('.overall-impression');
             let modalImg = modal.querySelector(".modal-img");
 
-            console.log("My data: ");
-            console.log(data);
             name.textContent = data.name;
             aroma.textContent = data.description.aroma;
             category.textContent = data.category;
@@ -400,39 +373,39 @@ function showBeerTypeData(beertypeData){
             modal.classList.remove('hidden');
         };
 
-        
-
+        //Listen for a click on the Learn more button
         beerButton.addEventListener('click', function(e){
             e.preventDefault();
             showDetails(beertype);
         });
-
+        //Listen for the click on the close button
         closeButton.addEventListener("click", function(){
             modal.classList.add("hidden");
         });
-
         
-        
+        //Putting the filled in template into the div container in the HTML
         dashboardBeerInfo.appendChild(beerClone);
-        
-
     });
-}
+};
 
 function showStorageData(storageData){
+    //Sorting storage data
     storageData.sort(function (a, b) {
         return a.amount - b.amount;
     });
 
     storageData.forEach(function(storageUnit){
+        //Cloning the template
         let storageInfoTemplate = document.querySelector("#storageInfoTemplate").content;
         let storageClone = storageInfoTemplate.cloneNode(true);
+        //Selecting elements in the clone
         let storageStatus = storageClone.querySelector(".storage-status progress");
         let storageName = storageClone.querySelector(".storage-name");
         let storageWarning = storageClone.querySelector(".storage-warning");
         let progressEl = storageClone.querySelector("progress");
         let progressBox = storageClone.querySelector(".progress-box");
 
+        //Setting the value for the elements in the clone
         storageName.textContent = storageUnit.name;
         if(storageUnit.amount==1){
             storageStatus.setAttribute("value", storageUnit.amount+2);
@@ -440,9 +413,7 @@ function showStorageData(storageData){
         if(storageUnit.amount>=2){
             storageStatus.setAttribute("value", storageUnit.amount+1);
         }
-        // if(storageUnit.amount>2){
-        //     storageStatus.setAttribute("value", storageUnit.amount);
-        // }
+ 
         progressEl.dataset.label=storageUnit.amount+"/10";
 
         if(storageUnit.amount<3){
