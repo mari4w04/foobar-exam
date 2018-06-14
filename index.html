@@ -7,9 +7,20 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
 </head>
 <body>
+    <div class="modal">
+        <div class="modal-content">
+            
+            
+            <div class="description">
+                    <h1>Hello</h1>
+            </div>
+            <div class="close-btn">Close</div>
 
+        </div>
+    </div>
     <div id="dashboard">
         <div class="bar-info"></div>
         <div class="cards">
@@ -36,7 +47,11 @@
                 <div class="storage-info"></div>
             </div>
             
-            <div class="beer-info card"></div>
+            <div class="beer-info-wrapper card">
+                <h2 class="card-name">Available beer</h2>
+                <div class="beer-info"></div>
+            </div>
+            
         </div>
     </div>
 
@@ -55,11 +70,13 @@
     <!-- Beer catalogue -->
         <article class="beer-description">
             <!-- Picture -->
-            <img src="">
-            <!-- Name -->
-            <h2>Name of the beer</h2>
+            <img class="beer-img" src="">
+            <a href="" class="btn">Learn more</a>
+            
             <!-- Description -->
-            <div class="beer-description">
+            <div class="beer-desc">
+                <!-- Name -->
+                <h2>Name of the beer</h2>
                 <!-- Aroma -->
                 <div class="aroma">Aroma of the beer</div>
                 <!-- Appearance -->
@@ -73,6 +90,8 @@
             </div>
         </article>
     </template>
+
+    
 
     <template id="beerLevelTemplate">
     <!-- Capacity bars for beer -->
@@ -119,12 +138,6 @@
             <div class="storage-warning"></div>
         </div>
     </template>
-
-    <!-- Most popular beer -->
-        <div class="most-popular">Most popular beer</div>
-    
-    
-
 
     
     
