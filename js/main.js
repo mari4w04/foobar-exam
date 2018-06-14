@@ -5,7 +5,7 @@ window.addEventListener("load", showAllData);
 function showAllData(){
     gettingData();
     //Getting data every 10 seconds
-    setInterval(gettingData, 1000);
+    setInterval(gettingData, 10000);
     getBeerData();
 };
 
