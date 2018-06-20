@@ -5,7 +5,7 @@ window.addEventListener("load", showAllData);
 function showAllData(){
     gettingData();
     //Getting data every 10 seconds
-    setInterval(gettingData, 1000);
+    setInterval(gettingData, 10000);
     getBeerData();
 };
 
@@ -43,7 +43,7 @@ function gettingData(){
     dashboardBarInfo = document.querySelector(".bar-info");
     dashboardBarInfo.innerHTML = "";
   
-    
+
 
     //Setting bar data in the template
     showBarData(data.bar);
@@ -58,7 +58,6 @@ function gettingData(){
     //Setting queue data in the template
     showQueueData(data.queue);
 
-    
     //Setting serving data in the template
     showServingInfo(data.serving);
 
